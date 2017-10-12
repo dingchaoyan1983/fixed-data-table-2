@@ -49,8 +49,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var FixedDataTableBufferedRows = (0, _createReactClass2.default)({
   displayName: 'FixedDataTableBufferedRows',
 
-
   propTypes: {
+    bufferRowCount: _propTypes2.default.number,
     isScrolling: _propTypes2.default.bool,
     defaultRowHeight: _propTypes2.default.number.isRequired,
     firstRowIndex: _propTypes2.default.number.isRequired,
@@ -76,7 +76,7 @@ var FixedDataTableBufferedRows = (0, _createReactClass2.default)({
   },
 
   getInitialState: function getInitialState() /*object*/{
-    this._rowBuffer = new _FixedDataTableRowBuffer2.default(this.props.rowsCount, this.props.defaultRowHeight, this.props.height, this._getRowHeight);
+    this._rowBuffer = new _FixedDataTableRowBuffer2.default(this.props.rowsCount, this.props.defaultRowHeight, this.props.height, this._getRowHeight, this.props.bufferRowCount);
     return {
       rowsToRender: this._rowBuffer.getRows(this.props.firstRowIndex, this.props.firstRowOffset)
     };
@@ -91,7 +91,7 @@ var FixedDataTableBufferedRows = (0, _createReactClass2.default)({
   },
   componentWillReceiveProps: function componentWillReceiveProps( /*object*/nextProps) {
     if (nextProps.rowsCount !== this.props.rowsCount || nextProps.defaultRowHeight !== this.props.defaultRowHeight || nextProps.height !== this.props.height) {
-      this._rowBuffer = new _FixedDataTableRowBuffer2.default(nextProps.rowsCount, nextProps.defaultRowHeight, nextProps.height, this._getRowHeight);
+      this._rowBuffer = new _FixedDataTableRowBuffer2.default(nextProps.rowsCount, nextProps.defaultRowHeight, nextProps.height, this._getRowHeight, this.props.bufferRowCount);
     }
     if (this.props.isScrolling && !nextProps.isScrolling) {
       this._updateBuffer();
@@ -102,7 +102,7 @@ var FixedDataTableBufferedRows = (0, _createReactClass2.default)({
     }
   },
   _updateBuffer: function _updateBuffer() {
-    if (this.isMounted()) {
+    if (this._rowBuffer) {
       this.setState({
         rowsToRender: this._rowBuffer.getRowsWithUpdatedBuffer()
       });
@@ -113,6 +113,7 @@ var FixedDataTableBufferedRows = (0, _createReactClass2.default)({
     return true;
   },
   componentWillUnmount: function componentWillUnmount() {
+    this._rowBuffer = null;
     this._staticRowArray.length = 0;
   },
   render: function render() /*object*/{

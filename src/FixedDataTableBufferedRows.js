@@ -21,8 +21,10 @@ import emptyFunction from 'emptyFunction';
 import joinClasses from 'joinClasses';
 
 var FixedDataTableBufferedRows = createReactClass({
+  displayName: 'FixedDataTableBufferedRows',
 
   propTypes: {
+    bufferRowCount: PropTypes.number,
     isScrolling: PropTypes.bool,
     defaultRowHeight: PropTypes.number.isRequired,
     firstRowIndex: PropTypes.number.isRequired,
@@ -53,7 +55,8 @@ var FixedDataTableBufferedRows = createReactClass({
         this.props.rowsCount,
         this.props.defaultRowHeight,
         this.props.height,
-        this._getRowHeight
+        this._getRowHeight,
+        this.props.bufferRowCount
       );
     return ({
       rowsToRender: this._rowBuffer.getRows(
@@ -82,7 +85,8 @@ var FixedDataTableBufferedRows = createReactClass({
           nextProps.rowsCount,
           nextProps.defaultRowHeight,
           nextProps.height,
-          this._getRowHeight
+          this._getRowHeight,
+          this.props.bufferRowCount
         );
     }
     if (this.props.isScrolling && !nextProps.isScrolling) {
@@ -98,7 +102,7 @@ var FixedDataTableBufferedRows = createReactClass({
   },
 
   _updateBuffer() {
-    if (this.isMounted()) {
+    if (this._rowBuffer) {
       this.setState({
         rowsToRender: this._rowBuffer.getRowsWithUpdatedBuffer(),
       });
@@ -111,6 +115,7 @@ var FixedDataTableBufferedRows = createReactClass({
   },
 
   componentWillUnmount() {
+    this._rowBuffer = null;
     this._staticRowArray.length = 0;
   },
 

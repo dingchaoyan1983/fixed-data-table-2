@@ -42,7 +42,8 @@ var FixedDataTableRowBuffer = function () {
   /*number*/rowsCount,
   /*number*/defaultRowHeight,
   /*number*/viewportHeight,
-  /*?function*/rowHeightGetter) {
+  /*?function*/rowHeightGetter,
+  /*?number*/bufferRowCount) {
     _classCallCheck(this, FixedDataTableRowBuffer);
 
     (0, _invariant2.default)(defaultRowHeight !== 0, "defaultRowHeight musn't be equal 0 in FixedDataTableRowBuffer");
@@ -52,7 +53,7 @@ var FixedDataTableRowBuffer = function () {
     this._viewportRowsBegin = 0;
     this._viewportRowsEnd = 0;
     this._maxVisibleRowCount = Math.ceil(viewportHeight / defaultRowHeight) + 1;
-    this._bufferRowsCount = (0, _clamp2.default)(Math.floor(this._maxVisibleRowCount / 2), MIN_BUFFER_ROWS, MAX_BUFFER_ROWS);
+    this._bufferRowsCount = bufferRowCount != null ? bufferRowCount : (0, _clamp2.default)(Math.floor(this._maxVisibleRowCount / 2), MIN_BUFFER_ROWS, MAX_BUFFER_ROWS);
     this._rowsCount = rowsCount;
     this._rowHeightGetter = rowHeightGetter;
     this._rows = [];

@@ -369,7 +369,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	var FixedDataTable = (0, _createReactClass2.default)({
 	  displayName: 'FixedDataTable',
 
-
 	  propTypes: {
 
 	    /**
@@ -520,6 +519,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    onScrollEnd: _propTypes2.default.func,
 
 	    /**
+	     * If enabled scroll events will not be propagated outside of the table.
+	     */
+	    stopScrollPropagation: _propTypes2.default.bool,
+
+	    /**
 	     * Callback that is called when `rowHeightGetter` returns a different height
 	     * for a row than the `rowHeight` prop. This is necessary because initially
 	     * table estimates heights of some parts of the content.
@@ -590,7 +594,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Whether columns are currently being reordered.
 	     */
-	    isColumnReordering: _propTypes2.default.bool
+	    isColumnReordering: _propTypes2.default.bool,
+
+	    /**
+	     * The number of rows outside the viewport to prerender. Defaults to roughly
+	     * half of the number of visible rows.
+	     */
+	    bufferRowCount: _propTypes2.default.number
 	  },
 
 	  getDefaultProps: function getDefaultProps() /*object*/{
@@ -600,7 +610,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      headerHeight: 0,
 	      showScrollbarX: true,
 	      showScrollbarY: true,
-	      touchScrollEnabled: false
+	      touchScrollEnabled: false,
+	      stopScrollPropagation: false
 	    };
 	  },
 	  componentWillMount: function componentWillMount() {
@@ -611,12 +622,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    this._didScrollStop = (0, _debounceCore2.default)(this._didScrollStop, 200, this);
 
-	    var touchEnabled = props.touchScrollEnabled === true;
-
-	    this._wheelHandler = new _ReactWheelHandler2.default(this._onScroll, this._shouldHandleWheelX, this._shouldHandleWheelY);
-	    this._touchHandler = new _ReactTouchHandler2.default(this._onScroll, touchEnabled && this._shouldHandleWheelX, touchEnabled && this._shouldHandleWheelY);
+	    this._wheelHandler = new _ReactWheelHandler2.default(this._onScroll, this._shouldHandleWheelX, this._shouldHandleWheelY, props.stopScrollPropagation);
+	    this._touchHandler = new _ReactTouchHandler2.default(this._onScroll, this._shouldHandleTouchX, this._shouldHandleTouchY, props.stopScrollPropagation);
 
 	    this.setState(this._calculateState(props));
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this._wheelHandler = null;
+	    this._touchHandler = null;
+	  },
+	  _shouldHandleTouchX: function _shouldHandleTouchX( /*number*/delta) /*boolean*/{
+	    return this.props.touchScrollEnabled && this._shouldHandleWheelX(delta);
+	  },
+	  _shouldHandleTouchY: function _shouldHandleTouchY( /*number*/delta) /*boolean*/{
+	    return this.props.touchScrollEnabled && this._shouldHandleWheelY(delta);
 	  },
 	  _shouldHandleWheelX: function _shouldHandleWheelX( /*number*/delta) /*boolean*/{
 	    if (this.props.overflowX === 'hidden') {
@@ -666,16 +685,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  componentWillReceiveProps: function componentWillReceiveProps( /*object*/nextProps) {
 	    var newOverflowX = nextProps.overflowX;
 	    var newOverflowY = nextProps.overflowY;
-	    var touchEnabled = nextProps.touchScrollEnabled === true;
-
-	    if (newOverflowX !== this.props.overflowX || newOverflowY !== this.props.overflowY) {
-	      this._wheelHandler = new _ReactWheelHandler2.default(this._onScroll, newOverflowX !== 'hidden', // Should handle horizontal scroll
-	      newOverflowY !== 'hidden' // Should handle vertical scroll
-	      );
-	      this._touchHandler = new _ReactTouchHandler2.default(this._onScroll, newOverflowX !== 'hidden' && touchEnabled, // Should handle horizontal scroll
-	      newOverflowY !== 'hidden' && touchEnabled // Should handle vertical scroll
-	      );
-	    }
 
 	    // In the case of controlled scrolling, notify.
 	    if (this.props.ownerHeight !== nextProps.ownerHeight || this.props.scrollTop !== nextProps.scrollTop || this.props.scrollLeft !== nextProps.scrollLeft) {
@@ -882,7 +891,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      scrollableColumns: state.bodyScrollableColumns,
 	      showLastRowBorder: true,
 	      width: state.width,
-	      rowPositionGetter: this._scrollHelper.getRowPosition
+	      rowPositionGetter: this._scrollHelper.getRowPosition,
+	      bufferRowCount: this.state.bufferRowCount
 	    });
 	  },
 
@@ -942,7 +952,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	  _onColumnReorderMove: function _onColumnReorderMove(
 	  /*number*/deltaX) {
-	    var reorderingData = this.state.columnReorderingData;
+	    //NOTE Need to clone this object when use pureRendering
+	    var reorderingData = _extends({}, this.state.columnReorderingData);
 	    reorderingData.dragDistance = deltaX;
 	    reorderingData.columnBefore = undefined;
 	    reorderingData.columnAfter = undefined;
@@ -1093,10 +1104,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var groupHeaderHeight = useGroupHeader ? props.groupHeaderHeight : 0;
 
-	    if (oldState && (props.rowsCount !== oldState.rowsCount || props.rowHeight !== oldState.rowHeight)) {
+	    if (oldState && (props.rowsCount !== oldState.rowsCount || props.rowHeight !== oldState.rowHeight || props.height !== oldState.height)) {
 	      // Number of rows changed, try to scroll to the row from before the
 	      // change
 	      var viewportHeight = (props.height === undefined ? props.maxHeight : props.height) - (props.headerHeight || 0) - (props.footerHeight || 0) - (props.groupHeaderHeight || 0);
+
+	      var oldViewportHeight = this._scrollHelper._viewportHeight;
+
 	      this._scrollHelper = new _FixedDataTableScrollHelper2.default(props.rowsCount, props.rowHeight, viewportHeight, props.rowHeightGetter);
 	      scrollState = this._scrollHelper.scrollToRow(firstRowIndex, firstRowOffset);
 	      firstRowIndex = scrollState.index;
@@ -1107,7 +1121,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    var lastScrollToRow = oldState ? oldState.scrollToRow : undefined;
-	    if (props.scrollToRow != null && props.scrollToRow !== lastScrollToRow) {
+	    if (props.scrollToRow != null && (props.scrollToRow !== lastScrollToRow || viewportHeight !== oldViewportHeight)) {
 	      scrollState = this._scrollHelper.scrollRowIntoView(props.scrollToRow);
 	      firstRowIndex = scrollState.index;
 	      firstRowOffset = scrollState.offset;
@@ -1278,97 +1292,103 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  },
 	  _onScroll: function _onScroll( /*number*/deltaX, /*number*/deltaY) {
-	    if (this.isMounted()) {
-	      if (!this._isScrolling) {
-	        this._didScrollStart();
-	      }
-	      var x = this.state.scrollX;
-	      if (Math.abs(deltaY) > Math.abs(deltaX) && this.props.overflowY !== 'hidden') {
-	        var scrollState = this._scrollHelper.scrollBy(Math.round(deltaY));
-	        var onVerticalScroll = this.props.onVerticalScroll;
-	        if (onVerticalScroll ? onVerticalScroll(scrollState.position) : true) {
-	          var maxScrollY = Math.max(0, scrollState.contentHeight - this.state.bodyHeight);
-	          this.setState({
-	            firstRowIndex: scrollState.index,
-	            firstRowOffset: scrollState.offset,
-	            scrollY: scrollState.position,
-	            scrollContentHeight: scrollState.contentHeight,
-	            maxScrollY: maxScrollY
-	          });
-	        }
-	      } else if (deltaX && this.props.overflowX !== 'hidden') {
-	        x += deltaX;
-	        x = x < 0 ? 0 : x;
-	        x = x > this.state.maxScrollX ? this.state.maxScrollX : x;
-
-	        //NOTE (asif) This is a hacky workaround to prevent FDT from setting its internal state
-	        var onHorizontalScroll = this.props.onHorizontalScroll;
-	        if (onHorizontalScroll ? onHorizontalScroll(x) : true) {
-	          this.setState({
-	            scrollX: x
-	          });
-	        }
-	      }
-
-	      this._didScrollStop();
+	    if (!this._isScrolling) {
+	      this._didScrollStart();
 	    }
-	  },
-	  _onHorizontalScroll: function _onHorizontalScroll( /*number*/scrollPos) {
-	    if (this.isMounted() && scrollPos !== this.state.scrollX) {
-	      if (!this._isScrolling) {
-	        this._didScrollStart();
-	      }
-	      var onHorizontalScroll = this.props.onHorizontalScroll;
-	      if (onHorizontalScroll ? onHorizontalScroll(scrollPos) : true) {
-	        this.setState({
-	          scrollX: scrollPos
-	        });
-	      }
-	      this._didScrollStop();
-	    }
-	  },
-	  _onVerticalScroll: function _onVerticalScroll( /*number*/scrollPos) {
-	    if (this.isMounted() && scrollPos !== this.state.scrollY) {
-	      if (!this._isScrolling) {
-	        this._didScrollStart();
-	      }
-	      var scrollState = this._scrollHelper.scrollTo(Math.round(scrollPos));
-
+	    var x = this.state.scrollX;
+	    if (Math.abs(deltaY) > Math.abs(deltaX) && this.props.overflowY !== 'hidden') {
+	      var scrollState = this._scrollHelper.scrollBy(Math.round(deltaY));
 	      var onVerticalScroll = this.props.onVerticalScroll;
 	      if (onVerticalScroll ? onVerticalScroll(scrollState.position) : true) {
+	        var maxScrollY = Math.max(0, scrollState.contentHeight - this.state.bodyHeight);
 	        this.setState({
 	          firstRowIndex: scrollState.index,
 	          firstRowOffset: scrollState.offset,
 	          scrollY: scrollState.position,
-	          scrollContentHeight: scrollState.contentHeight
+	          scrollContentHeight: scrollState.contentHeight,
+	          maxScrollY: maxScrollY
 	        });
-	        this._didScrollStop();
 	      }
+	    } else if (deltaX && this.props.overflowX !== 'hidden') {
+	      x += deltaX;
+	      x = x < 0 ? 0 : x;
+	      x = x > this.state.maxScrollX ? this.state.maxScrollX : x;
+
+	      //NOTE (asif) This is a hacky workaround to prevent FDT from setting its internal state
+	      var onHorizontalScroll = this.props.onHorizontalScroll;
+	      if (onHorizontalScroll ? onHorizontalScroll(x) : true) {
+	        this.setState({
+	          scrollX: x
+	        });
+	      }
+	    }
+
+	    this._didScrollStop();
+	  },
+	  _onHorizontalScroll: function _onHorizontalScroll( /*number*/scrollPos) {
+	    if (scrollPos === this.state.scrollX) {
+	      return;
+	    }
+
+	    if (!this._isScrolling) {
+	      this._didScrollStart();
+	    }
+	    var onHorizontalScroll = this.props.onHorizontalScroll;
+	    if (onHorizontalScroll ? onHorizontalScroll(scrollPos) : true) {
+	      this.setState({
+	        scrollX: scrollPos
+	      });
+	    }
+	    this._didScrollStop();
+	  },
+	  _onVerticalScroll: function _onVerticalScroll( /*number*/scrollPos) {
+	    if (scrollPos === this.state.scrollY) {
+	      return;
+	    }
+
+	    if (!this._isScrolling) {
+	      this._didScrollStart();
+	    }
+	    var scrollState = this._scrollHelper.scrollTo(Math.round(scrollPos));
+
+	    var onVerticalScroll = this.props.onVerticalScroll;
+	    if (onVerticalScroll ? onVerticalScroll(scrollState.position) : true) {
+	      this.setState({
+	        firstRowIndex: scrollState.index,
+	        firstRowOffset: scrollState.offset,
+	        scrollY: scrollState.position,
+	        scrollContentHeight: scrollState.contentHeight
+	      });
+	      this._didScrollStop();
 	    }
 	  },
 	  _didScrollStart: function _didScrollStart() {
-	    if (this.isMounted() && !this._isScrolling) {
-	      this._isScrolling = true;
-	      if (this.props.onScrollStart) {
-	        this.props.onScrollStart(this.state.scrollX, this.state.scrollY, this.state.firstRowIndex);
-	      }
+	    if (this._isScrolling) {
+	      return;
+	    }
+
+	    this._isScrolling = true;
+	    if (this.props.onScrollStart) {
+	      this.props.onScrollStart(this.state.scrollX, this.state.scrollY, this.state.firstRowIndex);
 	    }
 	  },
 	  _didScrollStop: function _didScrollStop() {
-	    if (this.isMounted() && this._isScrolling) {
-	      this._isScrolling = false;
-	      this.setState({ redraw: true });
-	      if (this.props.onScrollEnd) {
-	        this.props.onScrollEnd(this.state.scrollX, this.state.scrollY, this.state.firstRowIndex);
-	      }
+	    if (!this._isScrolling) {
+	      return;
+	    }
+
+	    this._isScrolling = false;
+	    this.setState({ redraw: true });
+	    if (this.props.onScrollEnd) {
+	      this.props.onScrollEnd(this.state.scrollX, this.state.scrollY, this.state.firstRowIndex);
 	    }
 	  }
 	});
 
 	var HorizontalScrollbar = (0, _createReactClass2.default)({
 	  displayName: 'HorizontalScrollbar',
-
 	  mixins: [_ReactComponentWithPureRenderMixin2.default],
+
 	  propTypes: {
 	    contentSize: _propTypes2.default.number.isRequired,
 	    offset: _propTypes2.default.number.isRequired,
@@ -6087,8 +6107,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var FixedDataTableBufferedRows = (0, _createReactClass2.default)({
 	  displayName: 'FixedDataTableBufferedRows',
 
-
 	  propTypes: {
+	    bufferRowCount: _propTypes2.default.number,
 	    isScrolling: _propTypes2.default.bool,
 	    defaultRowHeight: _propTypes2.default.number.isRequired,
 	    firstRowIndex: _propTypes2.default.number.isRequired,
@@ -6114,7 +6134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  getInitialState: function getInitialState() /*object*/{
-	    this._rowBuffer = new _FixedDataTableRowBuffer2.default(this.props.rowsCount, this.props.defaultRowHeight, this.props.height, this._getRowHeight);
+	    this._rowBuffer = new _FixedDataTableRowBuffer2.default(this.props.rowsCount, this.props.defaultRowHeight, this.props.height, this._getRowHeight, this.props.bufferRowCount);
 	    return {
 	      rowsToRender: this._rowBuffer.getRows(this.props.firstRowIndex, this.props.firstRowOffset)
 	    };
@@ -6129,7 +6149,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	  componentWillReceiveProps: function componentWillReceiveProps( /*object*/nextProps) {
 	    if (nextProps.rowsCount !== this.props.rowsCount || nextProps.defaultRowHeight !== this.props.defaultRowHeight || nextProps.height !== this.props.height) {
-	      this._rowBuffer = new _FixedDataTableRowBuffer2.default(nextProps.rowsCount, nextProps.defaultRowHeight, nextProps.height, this._getRowHeight);
+	      this._rowBuffer = new _FixedDataTableRowBuffer2.default(nextProps.rowsCount, nextProps.defaultRowHeight, nextProps.height, this._getRowHeight, this.props.bufferRowCount);
 	    }
 	    if (this.props.isScrolling && !nextProps.isScrolling) {
 	      this._updateBuffer();
@@ -6140,7 +6160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  _updateBuffer: function _updateBuffer() {
-	    if (this.isMounted()) {
+	    if (this._rowBuffer) {
 	      this.setState({
 	        rowsToRender: this._rowBuffer.getRowsWithUpdatedBuffer()
 	      });
@@ -6151,6 +6171,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return true;
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
+	    this._rowBuffer = null;
 	    this._staticRowArray.length = 0;
 	  },
 	  render: function render() /*object*/{
@@ -6267,7 +6288,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  /*number*/rowsCount,
 	  /*number*/defaultRowHeight,
 	  /*number*/viewportHeight,
-	  /*?function*/rowHeightGetter) {
+	  /*?function*/rowHeightGetter,
+	  /*?number*/bufferRowCount) {
 	    _classCallCheck(this, FixedDataTableRowBuffer);
 
 	    (0, _invariant2.default)(defaultRowHeight !== 0, "defaultRowHeight musn't be equal 0 in FixedDataTableRowBuffer");
@@ -6277,7 +6299,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this._viewportRowsBegin = 0;
 	    this._viewportRowsEnd = 0;
 	    this._maxVisibleRowCount = Math.ceil(viewportHeight / defaultRowHeight) + 1;
-	    this._bufferRowsCount = (0, _clamp2.default)(Math.floor(this._maxVisibleRowCount / 2), MIN_BUFFER_ROWS, MAX_BUFFER_ROWS);
+	    this._bufferRowsCount = bufferRowCount != null ? bufferRowCount : (0, _clamp2.default)(Math.floor(this._maxVisibleRowCount / 2), MIN_BUFFER_ROWS, MAX_BUFFER_ROWS);
 	    this._rowsCount = rowsCount;
 	    this._rowHeightGetter = rowHeightGetter;
 	    this._rows = [];
