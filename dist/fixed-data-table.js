@@ -3952,7 +3952,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Scrollbar = (0, _createReactClass2.default)({
 	  displayName: 'Scrollbar',
-
 	  mixins: [_ReactComponentWithPureRenderMixin2.default],
 
 	  propTypes: {
@@ -4295,13 +4294,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 	  },
 	  _blur: function _blur() {
-	    if (this.isMounted()) {
-	      try {
-	        this._onBlur();
-	        _ReactDOM2.default.findDOMNode(this).blur();
-	      } catch (oops) {
-	        // pass
-	      }
+	    var el = _ReactDOM2.default.findDOMNode(this);
+	    if (!el) {
+	      return;
+	    }
+
+	    try {
+	      this._onBlur();
+	      el.blur();
+	    } catch (oops) {
+	      // pass
 	    }
 	  },
 	  _setNextState: function _setNextState( /*object*/nextState, /*?object*/props) {
