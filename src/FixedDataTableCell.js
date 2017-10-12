@@ -14,12 +14,12 @@ import FixedDataTableCellDefault from 'FixedDataTableCellDefault';
 import FixedDataTableColumnReorderHandle from './FixedDataTableColumnReorderHandle';
 import FixedDataTableHelper from 'FixedDataTableHelper';
 import React from 'React';
+import PropTypes from 'prop-types';
 import cx from 'cx';
 import joinClasses from 'joinClasses';
 
 var DIR_SIGN = FixedDataTableHelper.DIR_SIGN;
 
-var {PropTypes} = React;
 
 var DEFAULT_PROPS = {
   align: 'left',

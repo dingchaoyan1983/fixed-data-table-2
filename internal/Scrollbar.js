@@ -24,6 +24,10 @@ var _ReactWheelHandler = require('./ReactWheelHandler');
 
 var _ReactWheelHandler2 = _interopRequireDefault(_ReactWheelHandler);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _cssVar = require('./cssVar');
 
 var _cssVar2 = _interopRequireDefault(_cssVar);
@@ -42,25 +46,20 @@ var _FixedDataTableTranslateDOMPosition2 = _interopRequireDefault(_FixedDataTabl
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Copyright Schrodinger, LLC
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule Scrollbar
- * @typechecks
- */
-
-var PropTypes = _React2.default.PropTypes;
-
-
 var UNSCROLLABLE_STATE = {
   position: 0,
   scrollable: false
-};
+}; /**
+    * Copyright Schrodinger, LLC
+    * All rights reserved.
+    *
+    * This source code is licensed under the BSD-style license found in the
+    * LICENSE file in the root directory of this source tree. An additional grant
+    * of patent rights can be found in the PATENTS file in the same directory.
+    *
+    * @providesModule Scrollbar
+    * @typechecks
+    */
 
 var FACE_MARGIN = parseInt((0, _cssVar2.default)('scrollbar-face-margin'), 10);
 var FACE_MARGIN_2 = FACE_MARGIN * 2;
@@ -75,16 +74,16 @@ var Scrollbar = _React2.default.createClass({
   mixins: [_ReactComponentWithPureRenderMixin2.default],
 
   propTypes: {
-    contentSize: PropTypes.number.isRequired,
-    defaultPosition: PropTypes.number,
-    isOpaque: PropTypes.bool,
-    orientation: PropTypes.oneOf(['vertical', 'horizontal']),
-    onScroll: PropTypes.func,
-    position: PropTypes.number,
-    size: PropTypes.number.isRequired,
-    trackColor: PropTypes.oneOf(['gray']),
-    zIndex: PropTypes.number,
-    verticalTop: PropTypes.number
+    contentSize: _propTypes2.default.number.isRequired,
+    defaultPosition: _propTypes2.default.number,
+    isOpaque: _propTypes2.default.bool,
+    orientation: _propTypes2.default.oneOf(['vertical', 'horizontal']),
+    onScroll: _propTypes2.default.func,
+    position: _propTypes2.default.number,
+    size: _propTypes2.default.number.isRequired,
+    trackColor: _propTypes2.default.oneOf(['gray']),
+    zIndex: _propTypes2.default.number,
+    verticalTop: _propTypes2.default.number
   },
 
   getInitialState: function getInitialState() /*object*/{

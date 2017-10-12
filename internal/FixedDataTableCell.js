@@ -18,6 +18,10 @@ var _React = require('./React');
 
 var _React2 = _interopRequireDefault(_React);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _cx = require('./cx');
 
 var _cx2 = _interopRequireDefault(_cx);
@@ -42,9 +46,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var DIR_SIGN = _FixedDataTableHelper2.default.DIR_SIGN;
 
-var PropTypes = _React2.default.PropTypes;
-
-
 var DEFAULT_PROPS = {
   align: 'left',
   highlighted: false
@@ -60,23 +61,23 @@ var FixedDataTableCell = _React2.default.createClass({
    * development, but please don't commit this component with enabled propTypes.
    */
   propTypes_DISABLED_FOR_PERFORMANCE: {
-    isScrolling: PropTypes.bool,
-    align: PropTypes.oneOf(['left', 'center', 'right']),
-    className: PropTypes.string,
-    highlighted: PropTypes.bool,
-    width: PropTypes.number.isRequired,
-    minWidth: PropTypes.number,
-    maxWidth: PropTypes.number,
-    height: PropTypes.number.isRequired,
+    isScrolling: _propTypes2.default.bool,
+    align: _propTypes2.default.oneOf(['left', 'center', 'right']),
+    className: _propTypes2.default.string,
+    highlighted: _propTypes2.default.bool,
+    width: _propTypes2.default.number.isRequired,
+    minWidth: _propTypes2.default.number,
+    maxWidth: _propTypes2.default.number,
+    height: _propTypes2.default.number.isRequired,
 
-    cell: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
+    cell: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.element, _propTypes2.default.func]),
 
-    columnKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    columnKey: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
 
     /**
      * The row index that will be passed to `cellRenderer` to render.
      */
-    rowIndex: PropTypes.number.isRequired,
+    rowIndex: _propTypes2.default.number.isRequired,
 
     /**
      * Callback for when resizer knob (in FixedDataTableCell) is clicked
@@ -90,13 +91,13 @@ var FixedDataTableCell = _React2.default.createClass({
      * @param number|string columnKey
      * @param object event
      */
-    onColumnResize: PropTypes.func,
-    onColumnReorder: PropTypes.func,
+    onColumnResize: _propTypes2.default.func,
+    onColumnReorder: _propTypes2.default.func,
 
     /**
      * The left offset in pixels of the cell.
      */
-    left: PropTypes.number
+    left: _propTypes2.default.number
   },
 
   getInitialState: function getInitialState() {

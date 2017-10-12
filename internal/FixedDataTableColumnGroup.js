@@ -4,9 +4,11 @@ var _React = require('./React');
 
 var _React2 = _interopRequireDefault(_React);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _propTypes = require('prop-types');
 
-var PropTypes = _React2.default.PropTypes;
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Component that defines the attributes of a table column group.
@@ -34,12 +36,12 @@ var FixedDataTableColumnGroup = _React2.default.createClass({
     /**
      * The horizontal alignment of the table cell content.
      */
-    align: PropTypes.oneOf(['left', 'center', 'right']),
+    align: _propTypes2.default.oneOf(['left', 'center', 'right']),
 
     /**
      * Controls if the column group is fixed when scrolling in the X axis.
      */
-    fixed: PropTypes.bool,
+    fixed: _propTypes2.default.bool,
 
     /**
      * This is the header cell for this column group.
@@ -60,7 +62,7 @@ var FixedDataTableColumnGroup = _React2.default.createClass({
      * You can also pass in a function that returns a react elemnt, with the
      * props object above passed in as the first parameter.
      */
-    header: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
+    header: _propTypes2.default.oneOfType([_propTypes2.default.node, _propTypes2.default.func])
 
   },
 

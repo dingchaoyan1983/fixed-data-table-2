@@ -11,11 +11,11 @@
  */
 
 import React from 'React';
+import PropTypes from 'prop-types';
 
 import cx from 'cx';
 import joinClasses from 'joinClasses';
 
-var {PropTypes} = React;
 
 /**
  * Component that handles default cell layout and styling.

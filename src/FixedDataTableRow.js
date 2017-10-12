@@ -14,12 +14,11 @@
 
 import React from 'React';
 import FixedDataTableCellGroup from 'FixedDataTableCellGroup';
+import PropTypes from 'prop-types';
 
 import cx from 'cx';
 import joinClasses from 'joinClasses';
 import FixedDataTableTranslateDOMPosition from 'FixedDataTableTranslateDOMPosition';
-
-var {PropTypes} = React;
 
 /**
  * Component that renders the row for <FixedDataTable />.

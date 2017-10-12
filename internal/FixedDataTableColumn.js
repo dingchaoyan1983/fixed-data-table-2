@@ -4,9 +4,11 @@ var _React = require('./React');
 
 var _React2 = _interopRequireDefault(_React);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _propTypes = require('prop-types');
 
-var PropTypes = _React2.default.PropTypes;
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Component that defines the attributes of table column.
@@ -34,12 +36,12 @@ var FixedDataTableColumn = _React2.default.createClass({
     /**
      * The horizontal alignment of the table cell content.
      */
-    align: PropTypes.oneOf(['left', 'center', 'right']),
+    align: _propTypes2.default.oneOf(['left', 'center', 'right']),
 
     /**
      * Controls if the column is fixed when scrolling in the X axis.
      */
-    fixed: PropTypes.bool,
+    fixed: _propTypes2.default.bool,
 
     /**
      * The header cell for this column.
@@ -62,7 +64,7 @@ var FixedDataTableColumn = _React2.default.createClass({
      * If you pass in a function, you will receive the same props object as the
      * first argument.
      */
-    header: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    header: _propTypes2.default.oneOfType([_propTypes2.default.node, _propTypes2.default.func]),
 
     /**
      * This is the body cell that will be cloned for this column.
@@ -86,7 +88,7 @@ var FixedDataTableColumn = _React2.default.createClass({
      * If you pass in a function, you will receive the same props object as the
      * first argument.
      */
-    cell: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    cell: _propTypes2.default.oneOfType([_propTypes2.default.node, _propTypes2.default.func]),
 
     /**
      * This is the footer cell for this column.
@@ -109,29 +111,29 @@ var FixedDataTableColumn = _React2.default.createClass({
      * If you pass in a function, you will receive the same props object as the
      * first argument.
      */
-    footer: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    footer: _propTypes2.default.oneOfType([_propTypes2.default.node, _propTypes2.default.func]),
 
     /**
      * This is used to uniquely identify the column, and is not required unless
      * you a resizing columns. This will be the key given in the
      * `onColumnResizeEndCallback` on the Table.
      */
-    columnKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    columnKey: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
 
     /**
      * The pixel width of the column.
      */
-    width: PropTypes.number.isRequired,
+    width: _propTypes2.default.number.isRequired,
 
     /**
      * If this is a resizable column this is its minimum pixel width.
      */
-    minWidth: PropTypes.number,
+    minWidth: _propTypes2.default.number,
 
     /**
      * If this is a resizable column this is its maximum pixel width.
      */
-    maxWidth: PropTypes.number,
+    maxWidth: _propTypes2.default.number,
 
     /**
      * The grow factor relative to other columns. Same as the flex-grow API
@@ -139,7 +141,7 @@ var FixedDataTableColumn = _React2.default.createClass({
      * extra width and distribute it proportionally according to all columns'
      * flexGrow values. Defaults to zero (no-flexing).
      */
-    flexGrow: PropTypes.number,
+    flexGrow: _propTypes2.default.number,
 
     /**
      * Whether the column can be resized with the
@@ -150,12 +152,12 @@ var FixedDataTableColumn = _React2.default.createClass({
      * is set to true, you will need to set the onColumnResizeEndCallback table
      * property and render your columns appropriately.
      */
-    isResizable: PropTypes.bool,
+    isResizable: _propTypes2.default.bool,
 
     /**
      * Whether the column can be dragged to reorder.
      */
-    isReorderable: PropTypes.bool,
+    isReorderable: _propTypes2.default.bool,
 
     /**
      * Whether cells in this column can be removed from document when outside
@@ -167,7 +169,7 @@ var FixedDataTableColumn = _React2.default.createClass({
      * Setting the property to false will keep previous behaviour and keep
      * cell rendered if the row it belongs to is visible.
      */
-    allowCellsRecycling: PropTypes.bool
+    allowCellsRecycling: _propTypes2.default.bool
   },
 
   getDefaultProps: function getDefaultProps() /*object*/{

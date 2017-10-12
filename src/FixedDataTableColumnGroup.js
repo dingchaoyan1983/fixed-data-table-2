@@ -11,8 +11,7 @@
  */
 
 import React from 'React';
-
-var {PropTypes} = React;
+import PropTypes from 'prop-types';
 
 /**
  * Component that defines the attributes of a table column group.

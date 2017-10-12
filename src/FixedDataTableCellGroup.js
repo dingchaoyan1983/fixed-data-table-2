@@ -15,11 +15,11 @@
 import FixedDataTableHelper from 'FixedDataTableHelper';
 import React from 'React';
 import FixedDataTableCell from 'FixedDataTableCell';
+import PropTypes from 'prop-types';
 
 import cx from 'cx';
 import FixedDataTableTranslateDOMPosition from 'FixedDataTableTranslateDOMPosition';
 
-var {PropTypes} = React;
 
 var DIR_SIGN = FixedDataTableHelper.DIR_SIGN;
 

@@ -19,6 +19,10 @@ var _React = require('./React');
 
 var _React2 = _interopRequireDefault(_React);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _ReactComponentWithPureRenderMixin = require('./ReactComponentWithPureRenderMixin');
 
 var _ReactComponentWithPureRenderMixin2 = _interopRequireDefault(_ReactComponentWithPureRenderMixin);
@@ -84,8 +88,6 @@ var _FixedDataTableTranslateDOMPosition = require('./FixedDataTableTranslateDOMP
 var _FixedDataTableTranslateDOMPosition2 = _interopRequireDefault(_FixedDataTableTranslateDOMPosition);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var PropTypes = _React2.default.PropTypes;
 
 var ReactChildren = _React2.default.Children;
 
@@ -153,7 +155,7 @@ var FixedDataTable = _React2.default.createClass({
      * Pixel width of table. If all columns do not fit,
      * a horizontal scrollbar will appear.
      */
-    width: PropTypes.number.isRequired,
+    width: _propTypes2.default.number.isRequired,
 
     /**
      * Pixel height of table. If all rows do not fit,
@@ -161,12 +163,12 @@ var FixedDataTable = _React2.default.createClass({
      *
      * Either `height` or `maxHeight` must be specified.
      */
-    height: PropTypes.number,
+    height: _propTypes2.default.number,
 
     /**
      * Class name to be passed into parent container
      */
-    className: PropTypes.string,
+    className: _propTypes2.default.string,
 
     /**
      * Maximum pixel height of table. If all rows do not fit,
@@ -174,7 +176,7 @@ var FixedDataTable = _React2.default.createClass({
      *
      * Either `height` or `maxHeight` must be specified.
      */
-    maxHeight: PropTypes.number,
+    maxHeight: _propTypes2.default.number,
 
     /**
      * Pixel height of table's owner, this is used in a managed scrolling
@@ -189,144 +191,144 @@ var FixedDataTable = _React2.default.createClass({
      *
      * This is used if `ownerHeight < height` (or `maxHeight`).
      */
-    ownerHeight: PropTypes.number,
+    ownerHeight: _propTypes2.default.number,
 
-    overflowX: PropTypes.oneOf(['hidden', 'auto']),
-    overflowY: PropTypes.oneOf(['hidden', 'auto']),
+    overflowX: _propTypes2.default.oneOf(['hidden', 'auto']),
+    overflowY: _propTypes2.default.oneOf(['hidden', 'auto']),
 
     /**
      * Boolean flag indicating of touch scrolling should be enabled
      * This feature is current in beta and may have bugs
      */
-    touchScrollEnabled: PropTypes.bool,
+    touchScrollEnabled: _propTypes2.default.bool,
 
     /**
      * Hide the scrollbar but still enable scroll functionality
      */
-    showScrollbarX: PropTypes.bool,
-    showScrollbarY: PropTypes.bool,
+    showScrollbarX: _propTypes2.default.bool,
+    showScrollbarY: _propTypes2.default.bool,
 
     /**
      * Callback when horizontally scrolling the grid.
      *
      * Return false to stop propagation.
      */
-    onHorizontalScroll: PropTypes.func,
+    onHorizontalScroll: _propTypes2.default.func,
 
     /**
      * Callback when vertically scrolling the grid.
      *
      * Return false to stop propagation.
      */
-    onVerticalScroll: PropTypes.func,
+    onVerticalScroll: _propTypes2.default.func,
 
     /**
      * Number of rows in the table.
      */
-    rowsCount: PropTypes.number.isRequired,
+    rowsCount: _propTypes2.default.number.isRequired,
 
     /**
      * Pixel height of rows unless `rowHeightGetter` is specified and returns
      * different value.
      */
-    rowHeight: PropTypes.number.isRequired,
+    rowHeight: _propTypes2.default.number.isRequired,
 
     /**
      * If specified, `rowHeightGetter(index)` is called for each row and the
      * returned value overrides `rowHeight` for particular row.
      */
-    rowHeightGetter: PropTypes.func,
+    rowHeightGetter: _propTypes2.default.func,
 
     /**
      * To get any additional CSS classes that should be added to a row,
      * `rowClassNameGetter(index)` is called.
      */
-    rowClassNameGetter: PropTypes.func,
+    rowClassNameGetter: _propTypes2.default.func,
 
     /**
      * If specified, `rowKeyGetter(index)` is called for each row and the
      * returned value overrides `key` for the particular row.
      */
-    rowKeyGetter: PropTypes.func,
+    rowKeyGetter: _propTypes2.default.func,
 
     /**
      * Pixel height of the column group header.
      */
-    groupHeaderHeight: PropTypes.number,
+    groupHeaderHeight: _propTypes2.default.number,
 
     /**
      * Pixel height of header.
      */
-    headerHeight: PropTypes.number.isRequired,
+    headerHeight: _propTypes2.default.number.isRequired,
 
     /**
      * Pixel height of footer.
      */
-    footerHeight: PropTypes.number,
+    footerHeight: _propTypes2.default.number,
 
     /**
      * Value of horizontal scroll.
      */
-    scrollLeft: PropTypes.number,
+    scrollLeft: _propTypes2.default.number,
 
     /**
      * Index of column to scroll to.
      */
-    scrollToColumn: PropTypes.number,
+    scrollToColumn: _propTypes2.default.number,
 
     /**
      * Value of vertical scroll.
      */
-    scrollTop: PropTypes.number,
+    scrollTop: _propTypes2.default.number,
 
     /**
      * Index of row to scroll to.
      */
-    scrollToRow: PropTypes.number,
+    scrollToRow: _propTypes2.default.number,
 
     /**
      * Callback that is called when scrolling starts with current horizontal
      * and vertical scroll values.
      */
-    onScrollStart: PropTypes.func,
+    onScrollStart: _propTypes2.default.func,
 
     /**
      * Callback that is called when scrolling ends or stops with new horizontal
      * and vertical scroll values.
      */
-    onScrollEnd: PropTypes.func,
+    onScrollEnd: _propTypes2.default.func,
 
     /**
      * Callback that is called when `rowHeightGetter` returns a different height
      * for a row than the `rowHeight` prop. This is necessary because initially
      * table estimates heights of some parts of the content.
      */
-    onContentHeightChange: PropTypes.func,
+    onContentHeightChange: _propTypes2.default.func,
 
     /**
      * Callback that is called when a row is clicked.
      */
-    onRowClick: PropTypes.func,
+    onRowClick: _propTypes2.default.func,
 
     /**
      * Callback that is called when a row is double clicked.
      */
-    onRowDoubleClick: PropTypes.func,
+    onRowDoubleClick: _propTypes2.default.func,
 
     /**
      * Callback that is called when a mouse-down event happens on a row.
      */
-    onRowMouseDown: PropTypes.func,
+    onRowMouseDown: _propTypes2.default.func,
 
     /**
      * Callback that is called when a mouse-enter event happens on a row.
      */
-    onRowMouseEnter: PropTypes.func,
+    onRowMouseEnter: _propTypes2.default.func,
 
     /**
      * Callback that is called when a mouse-leave event happens on a row.
      */
-    onRowMouseLeave: PropTypes.func,
+    onRowMouseLeave: _propTypes2.default.func,
 
     /**
      * Callback that is called when resizer has been released
@@ -341,7 +343,7 @@ var FixedDataTable = _React2.default.createClass({
      * )
      * ```
      */
-    onColumnResizeEndCallback: PropTypes.func,
+    onColumnResizeEndCallback: _propTypes2.default.func,
 
     /**
      * Callback that is called when reordering has been completed
@@ -357,17 +359,17 @@ var FixedDataTable = _React2.default.createClass({
      * )
      * ```
      */
-    onColumnReorderEndCallback: PropTypes.func,
+    onColumnReorderEndCallback: _propTypes2.default.func,
 
     /**
      * Whether a column is currently being resized.
      */
-    isColumnResizing: PropTypes.bool,
+    isColumnResizing: _propTypes2.default.bool,
 
     /**
      * Whether columns are currently being reordered.
      */
-    isColumnReordering: PropTypes.bool
+    isColumnReordering: _propTypes2.default.bool
   },
 
   getDefaultProps: function getDefaultProps() /*object*/{
@@ -1147,11 +1149,11 @@ var HorizontalScrollbar = _React2.default.createClass({
 
   mixins: [_ReactComponentWithPureRenderMixin2.default],
   propTypes: {
-    contentSize: PropTypes.number.isRequired,
-    offset: PropTypes.number.isRequired,
-    onScroll: PropTypes.func.isRequired,
-    position: PropTypes.number.isRequired,
-    size: PropTypes.number.isRequired
+    contentSize: _propTypes2.default.number.isRequired,
+    offset: _propTypes2.default.number.isRequired,
+    onScroll: _propTypes2.default.func.isRequired,
+    position: _propTypes2.default.number.isRequired,
+    size: _propTypes2.default.number.isRequired
   },
 
   componentWillMount: function componentWillMount() {

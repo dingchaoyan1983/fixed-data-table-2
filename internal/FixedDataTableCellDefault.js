@@ -6,6 +6,10 @@ var _React = require('./React');
 
 var _React2 = _interopRequireDefault(_React);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _cx = require('./cx');
 
 var _cx2 = _interopRequireDefault(_cx);
@@ -27,8 +31,6 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
                                                                                                                                                                                                                               * @providesModule FixedDataTableCellDefault
                                                                                                                                                                                                                               * @typechecks
                                                                                                                                                                                                                               */
-
-var PropTypes = _React2.default.PropTypes;
 
 /**
  * Component that handles default cell layout and styling.
@@ -53,7 +55,6 @@ var PropTypes = _React2.default.PropTypes;
  * );
  * ```
  */
-
 var FixedDataTableCellDefault = _React2.default.createClass({
   displayName: 'FixedDataTableCellDefault',
 
@@ -62,18 +63,18 @@ var FixedDataTableCellDefault = _React2.default.createClass({
     /**
      * Outer height of the cell.
      */
-    height: PropTypes.number,
+    height: _propTypes2.default.number,
 
     /**
      * Outer width of the cell.
      */
-    width: PropTypes.number,
+    width: _propTypes2.default.number,
 
     /**
      * Optional prop that if specified on the `Column` will be passed to the
      * cell. It can be used to uniquely identify which column is the cell is in.
      */
-    columnKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    columnKey: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
 
     /**
      * Optional prop that represents the rows index in the table.
@@ -83,7 +84,7 @@ var FixedDataTableCellDefault = _React2.default.createClass({
      * Below that entry point the user is welcome to consume or
      * pass the prop through at their discretion.
      */
-    rowIndex: PropTypes.number
+    rowIndex: _propTypes2.default.number
   },
 
   render: function render() {

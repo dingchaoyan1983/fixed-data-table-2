@@ -12,6 +12,10 @@ var _React = require('./React');
 
 var _React2 = _interopRequireDefault(_React);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _ReactComponentWithPureRenderMixin = require('./ReactComponentWithPureRenderMixin');
 
 var _ReactComponentWithPureRenderMixin2 = _interopRequireDefault(_ReactComponentWithPureRenderMixin);
@@ -26,24 +30,6 @@ var _cx2 = _interopRequireDefault(_cx);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Copyright Schrodinger, LLC
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * This is to be used with the FixedDataTable. It is a header icon
- * that allows you to reorder the corresponding column.
- *
- * @providesModule FixedDataTableColumnReorderHandle
- * @typechecks
- */
-
-var PropTypes = _React2.default.PropTypes;
-
-
 var FixedDataTableColumnReorderHandle = _React2.default.createClass({
   displayName: 'FixedDataTableColumnReorderHandle',
 
@@ -54,12 +40,12 @@ var FixedDataTableColumnReorderHandle = _React2.default.createClass({
     /**
      * When resizing is complete this is called.
      */
-    onColumnReorderEnd: PropTypes.func,
+    onColumnReorderEnd: _propTypes2.default.func,
 
     /**
      * Column key for the column being reordered.
      */
-    columnKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    columnKey: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
   },
 
   getInitialState: function getInitialState() /*object*/{
@@ -132,6 +118,19 @@ var FixedDataTableColumnReorderHandle = _React2.default.createClass({
     });
     this.props.onColumnReorderMove(this._distance);
   }
-});
+}); /**
+     * Copyright Schrodinger, LLC
+     * All rights reserved.
+     *
+     * This source code is licensed under the BSD-style license found in the
+     * LICENSE file in the root directory of this source tree. An additional grant
+     * of patent rights can be found in the PATENTS file in the same directory.
+     *
+     * This is to be used with the FixedDataTable. It is a header icon
+     * that allows you to reorder the corresponding column.
+     *
+     * @providesModule FixedDataTableColumnReorderHandle
+     * @typechecks
+     */
 
 module.exports = FixedDataTableColumnReorderHandle;

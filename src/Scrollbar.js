@@ -16,13 +16,12 @@ import React from 'React';
 import ReactDOM from 'ReactDOM';
 import ReactComponentWithPureRenderMixin from 'ReactComponentWithPureRenderMixin';
 import ReactWheelHandler from 'ReactWheelHandler';
+import PropTypes from 'prop-types';
 
 import cssVar from 'cssVar';
 import cx from 'cx';
 import emptyFunction from 'emptyFunction';
 import FixedDataTableTranslateDOMPosition from 'FixedDataTableTranslateDOMPosition';
-
-var {PropTypes} = React;
 
 var UNSCROLLABLE_STATE = {
   position: 0,

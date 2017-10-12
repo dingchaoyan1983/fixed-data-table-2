@@ -14,6 +14,7 @@
 /*eslint no-bitwise:1*/
 
 import React from 'React';
+import PropTypes from 'prop-types';
 import ReactComponentWithPureRenderMixin from 'ReactComponentWithPureRenderMixin';
 import ReactWheelHandler from 'ReactWheelHandler';
 import ReactTouchHandler from 'ReactTouchHandler';
@@ -32,7 +33,6 @@ import joinClasses from 'joinClasses';
 import shallowEqual from 'shallowEqual';
 import FixedDataTableTranslateDOMPosition from 'FixedDataTableTranslateDOMPosition';
 
-var {PropTypes} = React;
 var ReactChildren = React.Children;
 
 var EMPTY_OBJECT = {};

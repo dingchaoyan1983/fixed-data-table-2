@@ -12,6 +12,10 @@ var _React = require('./React');
 
 var _React2 = _interopRequireDefault(_React);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _ReactComponentWithPureRenderMixin = require('./ReactComponentWithPureRenderMixin');
 
 var _ReactComponentWithPureRenderMixin2 = _interopRequireDefault(_ReactComponentWithPureRenderMixin);
@@ -26,81 +30,62 @@ var _cx2 = _interopRequireDefault(_cx);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Copyright Schrodinger, LLC
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * This is to be used with the FixedDataTable. It is a read line
- * that when you click on a column that is resizable appears and allows
- * you to resize the corresponding column.
- *
- * @providesModule FixedDataTableColumnResizeHandle
- * @typechecks
- */
-
-var PropTypes = _React2.default.PropTypes;
-
-
 var FixedDataTableColumnResizeHandle = _React2.default.createClass({
   displayName: 'FixedDataTableColumnResizeHandle',
 
   mixins: [_ReactComponentWithPureRenderMixin2.default],
 
   propTypes: {
-    visible: PropTypes.bool.isRequired,
+    visible: _propTypes2.default.bool.isRequired,
 
     /**
      * This is the height of the line
      */
-    height: PropTypes.number.isRequired,
+    height: _propTypes2.default.number.isRequired,
 
     /**
      * Offset from left border of the table, please note
      * that the line is a border on diff. So this is really the
      * offset of the column itself.
      */
-    leftOffset: PropTypes.number.isRequired,
+    leftOffset: _propTypes2.default.number.isRequired,
 
     /**
      * Height of the clickable region of the line.
      * This is assumed to be at the top of the line.
      */
-    knobHeight: PropTypes.number.isRequired,
+    knobHeight: _propTypes2.default.number.isRequired,
 
     /**
      * The line is a border on a diff, so this is essentially
      * the width of column.
      */
-    initialWidth: PropTypes.number,
+    initialWidth: _propTypes2.default.number,
 
     /**
      * The minimum width this dragger will collapse to
      */
-    minWidth: PropTypes.number,
+    minWidth: _propTypes2.default.number,
 
     /**
      * The maximum width this dragger will collapse to
      */
-    maxWidth: PropTypes.number,
+    maxWidth: _propTypes2.default.number,
 
     /**
      * Initial click event on the header cell.
      */
-    initialEvent: PropTypes.object,
+    initialEvent: _propTypes2.default.object,
 
     /**
      * When resizing is complete this is called.
      */
-    onColumnResizeEnd: PropTypes.func,
+    onColumnResizeEnd: _propTypes2.default.func,
 
     /**
      * Column key for the column being resized.
      */
-    columnKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    columnKey: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
   },
 
   getInitialState: function getInitialState() /*object*/{
@@ -168,6 +153,20 @@ var FixedDataTableColumnResizeHandle = _React2.default.createClass({
     this._mouseMoveTracker.releaseMouseMoves();
     this.props.onColumnResizeEnd(this.state.width, this.props.columnKey);
   }
-});
+}); /**
+     * Copyright Schrodinger, LLC
+     * All rights reserved.
+     *
+     * This source code is licensed under the BSD-style license found in the
+     * LICENSE file in the root directory of this source tree. An additional grant
+     * of patent rights can be found in the PATENTS file in the same directory.
+     *
+     * This is to be used with the FixedDataTable. It is a read line
+     * that when you click on a column that is resizable appears and allows
+     * you to resize the corresponding column.
+     *
+     * @providesModule FixedDataTableColumnResizeHandle
+     * @typechecks
+     */
 
 module.exports = FixedDataTableColumnResizeHandle;

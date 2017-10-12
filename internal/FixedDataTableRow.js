@@ -22,6 +22,10 @@ var _FixedDataTableCellGroup = require('./FixedDataTableCellGroup');
 
 var _FixedDataTableCellGroup2 = _interopRequireDefault(_FixedDataTableCellGroup);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _cx = require('./cx');
 
 var _cx2 = _interopRequireDefault(_cx);
@@ -36,67 +40,64 @@ var _FixedDataTableTranslateDOMPosition2 = _interopRequireDefault(_FixedDataTabl
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var PropTypes = _React2.default.PropTypes;
-
 /**
  * Component that renders the row for <FixedDataTable />.
  * This component should not be used directly by developer. Instead,
  * only <FixedDataTable /> should use the component internally.
  */
-
 var FixedDataTableRowImpl = _React2.default.createClass({
   displayName: 'FixedDataTableRowImpl',
 
 
   propTypes: {
 
-    isScrolling: PropTypes.bool,
+    isScrolling: _propTypes2.default.bool,
 
     /**
      * Array of <FixedDataTableColumn /> for the fixed columns.
      */
-    fixedColumns: PropTypes.array.isRequired,
+    fixedColumns: _propTypes2.default.array.isRequired,
 
     /**
      * Array of <FixedDataTableColumn /> for the fixed columns (right position).
      */
-    rightFixedColumns: PropTypes.array.isRequired,
+    rightFixedColumns: _propTypes2.default.array.isRequired,
 
     /**
      * Height of the row.
      */
-    height: PropTypes.number.isRequired,
+    height: _propTypes2.default.number.isRequired,
 
     /**
      * The row index.
      */
-    index: PropTypes.number.isRequired,
+    index: _propTypes2.default.number.isRequired,
 
     /**
      * Array of <FixedDataTableColumn /> for the scrollable columns.
      */
-    scrollableColumns: PropTypes.array.isRequired,
+    scrollableColumns: _propTypes2.default.array.isRequired,
 
     /**
      * The distance between the left edge of the table and the leftmost portion
      * of the row currently visible in the table.
      */
-    scrollLeft: PropTypes.number.isRequired,
+    scrollLeft: _propTypes2.default.number.isRequired,
 
     /**
      * Width of the row.
      */
-    width: PropTypes.number.isRequired,
+    width: _propTypes2.default.number.isRequired,
 
     /**
      * Fire when a row is clicked.
      */
-    onClick: PropTypes.func,
+    onClick: _propTypes2.default.func,
 
     /**
      * Fire when a row is double clicked.
      */
-    onDoubleClick: PropTypes.func,
+    onDoubleClick: _propTypes2.default.func,
 
     /**
      * Callback for when resizer knob (in FixedDataTableCell) is clicked
@@ -108,9 +109,9 @@ var FixedDataTableRowImpl = _React2.default.createClass({
      * @param number|string columnKey
      * @param object event
      */
-    onColumnResize: PropTypes.func,
+    onColumnResize: _propTypes2.default.func,
 
-    isColumnReordering: PropTypes.bool,
+    isColumnReordering: _propTypes2.default.bool,
     /**
      * Callback for when reorder handle (in FixedDataTableCell) is clicked
      * to initialize reordering. Please note this is only on the cells
@@ -120,19 +121,19 @@ var FixedDataTableRowImpl = _React2.default.createClass({
      * @param number leftOffset
      * @param object event
      */
-    onColumnReorder: PropTypes.func,
+    onColumnReorder: _propTypes2.default.func,
 
     /**
      * Callback for when a cell is moved while reordering.
      * @param number distance
      */
-    onColumnReorderMove: PropTypes.func,
+    onColumnReorderMove: _propTypes2.default.func,
 
     /**
      * Callback for when the mouse is released to complete reordering.
      * @param number distance
      */
-    onColumnReorderEnd: PropTypes.func
+    onColumnReorderEnd: _propTypes2.default.func
   },
 
   render: function render() /*object*/{
@@ -282,28 +283,28 @@ var FixedDataTableRow = _React2.default.createClass({
 
   propTypes: {
 
-    isScrolling: PropTypes.bool,
+    isScrolling: _propTypes2.default.bool,
 
     /**
      * Height of the row.
      */
-    height: PropTypes.number.isRequired,
+    height: _propTypes2.default.number.isRequired,
 
     /**
      * Z-index on which the row will be displayed. Used e.g. for keeping
      * header and footer in front of other rows.
      */
-    zIndex: PropTypes.number,
+    zIndex: _propTypes2.default.number,
 
     /**
      * The vertical position where the row should render itself
      */
-    offsetTop: PropTypes.number.isRequired,
+    offsetTop: _propTypes2.default.number.isRequired,
 
     /**
      * Width of the row.
      */
-    width: PropTypes.number.isRequired
+    width: _propTypes2.default.number.isRequired
   },
 
   componentWillMount: function componentWillMount() {

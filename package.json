@@ -81,5 +81,8 @@
     "table",
     "data-table",
     "fixed-table"
-  ]
+  ],
+  "dependencies": {
+    "prop-types": "^15.6.0"
+  }
 }
