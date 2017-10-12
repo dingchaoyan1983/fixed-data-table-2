@@ -38,6 +38,10 @@ var _FixedDataTableTranslateDOMPosition = require('./FixedDataTableTranslateDOMP
 
 var _FixedDataTableTranslateDOMPosition2 = _interopRequireDefault(_FixedDataTableTranslateDOMPosition);
 
+var _createReactClass = require('create-react-class');
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -45,7 +49,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * This component should not be used directly by developer. Instead,
  * only <FixedDataTable /> should use the component internally.
  */
-var FixedDataTableRowImpl = _React2.default.createClass({
+var FixedDataTableRowImpl = (0, _createReactClass2.default)({
   displayName: 'FixedDataTableRowImpl',
 
 
@@ -277,7 +281,7 @@ var FixedDataTableRowImpl = _React2.default.createClass({
   }
 });
 
-var FixedDataTableRow = _React2.default.createClass({
+var FixedDataTableRow = (0, _createReactClass2.default)({
   displayName: 'FixedDataTableRow',
 
 

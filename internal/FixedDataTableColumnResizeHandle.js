@@ -20,6 +20,10 @@ var _ReactComponentWithPureRenderMixin = require('./ReactComponentWithPureRender
 
 var _ReactComponentWithPureRenderMixin2 = _interopRequireDefault(_ReactComponentWithPureRenderMixin);
 
+var _createReactClass = require('create-react-class');
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
 var _clamp = require('./clamp');
 
 var _clamp2 = _interopRequireDefault(_clamp);
@@ -30,7 +34,23 @@ var _cx2 = _interopRequireDefault(_cx);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FixedDataTableColumnResizeHandle = _React2.default.createClass({
+/**
+ * Copyright Schrodinger, LLC
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * This is to be used with the FixedDataTable. It is a read line
+ * that when you click on a column that is resizable appears and allows
+ * you to resize the corresponding column.
+ *
+ * @providesModule FixedDataTableColumnResizeHandle
+ * @typechecks
+ */
+
+var FixedDataTableColumnResizeHandle = (0, _createReactClass2.default)({
   displayName: 'FixedDataTableColumnResizeHandle',
 
   mixins: [_ReactComponentWithPureRenderMixin2.default],
@@ -153,20 +173,6 @@ var FixedDataTableColumnResizeHandle = _React2.default.createClass({
     this._mouseMoveTracker.releaseMouseMoves();
     this.props.onColumnResizeEnd(this.state.width, this.props.columnKey);
   }
-}); /**
-     * Copyright Schrodinger, LLC
-     * All rights reserved.
-     *
-     * This source code is licensed under the BSD-style license found in the
-     * LICENSE file in the root directory of this source tree. An additional grant
-     * of patent rights can be found in the PATENTS file in the same directory.
-     *
-     * This is to be used with the FixedDataTable. It is a read line
-     * that when you click on a column that is resizable appears and allows
-     * you to resize the corresponding column.
-     *
-     * @providesModule FixedDataTableColumnResizeHandle
-     * @typechecks
-     */
+});
 
 module.exports = FixedDataTableColumnResizeHandle;

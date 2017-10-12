@@ -20,6 +20,10 @@ var _ReactComponentWithPureRenderMixin = require('./ReactComponentWithPureRender
 
 var _ReactComponentWithPureRenderMixin2 = _interopRequireDefault(_ReactComponentWithPureRenderMixin);
 
+var _createReactClass = require('create-react-class');
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
 var _clamp = require('./clamp');
 
 var _clamp2 = _interopRequireDefault(_clamp);
@@ -30,7 +34,22 @@ var _cx2 = _interopRequireDefault(_cx);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FixedDataTableColumnReorderHandle = _React2.default.createClass({
+/**
+ * Copyright Schrodinger, LLC
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * This is to be used with the FixedDataTable. It is a header icon
+ * that allows you to reorder the corresponding column.
+ *
+ * @providesModule FixedDataTableColumnReorderHandle
+ * @typechecks
+ */
+
+var FixedDataTableColumnReorderHandle = (0, _createReactClass2.default)({
   displayName: 'FixedDataTableColumnReorderHandle',
 
   mixins: [_ReactComponentWithPureRenderMixin2.default],
@@ -118,19 +137,6 @@ var FixedDataTableColumnReorderHandle = _React2.default.createClass({
     });
     this.props.onColumnReorderMove(this._distance);
   }
-}); /**
-     * Copyright Schrodinger, LLC
-     * All rights reserved.
-     *
-     * This source code is licensed under the BSD-style license found in the
-     * LICENSE file in the root directory of this source tree. An additional grant
-     * of patent rights can be found in the PATENTS file in the same directory.
-     *
-     * This is to be used with the FixedDataTable. It is a header icon
-     * that allows you to reorder the corresponding column.
-     *
-     * @providesModule FixedDataTableColumnReorderHandle
-     * @typechecks
-     */
+});
 
 module.exports = FixedDataTableColumnReorderHandle;

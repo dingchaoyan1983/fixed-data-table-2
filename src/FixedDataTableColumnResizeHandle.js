@@ -19,12 +19,13 @@ import Locale from 'Locale';
 import React from 'React';
 import PropTypes from 'prop-types';
 import ReactComponentWithPureRenderMixin from 'ReactComponentWithPureRenderMixin';
+import createReactClass from 'create-react-class';
 
 import clamp from 'clamp';
 import cx from 'cx';
 
 
-var FixedDataTableColumnResizeHandle = React.createClass({
+var FixedDataTableColumnResizeHandle = createReactClass({
   mixins: [ReactComponentWithPureRenderMixin],
 
   propTypes: {

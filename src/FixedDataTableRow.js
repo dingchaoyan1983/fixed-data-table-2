@@ -19,13 +19,14 @@ import PropTypes from 'prop-types';
 import cx from 'cx';
 import joinClasses from 'joinClasses';
 import FixedDataTableTranslateDOMPosition from 'FixedDataTableTranslateDOMPosition';
+import createReactClass from 'create-react-class';
 
 /**
  * Component that renders the row for <FixedDataTable />.
  * This component should not be used directly by developer. Instead,
  * only <FixedDataTable /> should use the component internally.
  */
-var FixedDataTableRowImpl = React.createClass({
+var FixedDataTableRowImpl = createReactClass({
 
   propTypes: {
 
@@ -269,7 +270,7 @@ var FixedDataTableRowImpl = React.createClass({
   },
 });
 
-var FixedDataTableRow = React.createClass({
+var FixedDataTableRow = createReactClass({
 
   propTypes: {
 

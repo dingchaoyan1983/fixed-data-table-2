@@ -12,11 +12,12 @@
 
 import React from 'React';
 import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 
 /**
  * Component that defines the attributes of a table column group.
  */
-var FixedDataTableColumnGroup = React.createClass({
+var FixedDataTableColumnGroup = createReactClass({
   statics: {
     __TableColumnGroup__: true,
   },

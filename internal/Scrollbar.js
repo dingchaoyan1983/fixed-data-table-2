@@ -28,6 +28,10 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _createReactClass = require('create-react-class');
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
 var _cssVar = require('./cssVar');
 
 var _cssVar2 = _interopRequireDefault(_cssVar);
@@ -46,20 +50,22 @@ var _FixedDataTableTranslateDOMPosition2 = _interopRequireDefault(_FixedDataTabl
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * Copyright Schrodinger, LLC
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule Scrollbar
+ * @typechecks
+ */
+
 var UNSCROLLABLE_STATE = {
   position: 0,
   scrollable: false
-}; /**
-    * Copyright Schrodinger, LLC
-    * All rights reserved.
-    *
-    * This source code is licensed under the BSD-style license found in the
-    * LICENSE file in the root directory of this source tree. An additional grant
-    * of patent rights can be found in the PATENTS file in the same directory.
-    *
-    * @providesModule Scrollbar
-    * @typechecks
-    */
+};
 
 var FACE_MARGIN = parseInt((0, _cssVar2.default)('scrollbar-face-margin'), 10);
 var FACE_MARGIN_2 = FACE_MARGIN * 2;
@@ -68,7 +74,7 @@ var KEYBOARD_SCROLL_AMOUNT = 40;
 
 var _lastScrolledScrollbar = null;
 
-var Scrollbar = _React2.default.createClass({
+var Scrollbar = (0, _createReactClass2.default)({
   displayName: 'Scrollbar',
 
   mixins: [_ReactComponentWithPureRenderMixin2.default],

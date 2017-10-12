@@ -17,6 +17,7 @@ import React from 'React';
 import PropTypes from 'prop-types';
 import cx from 'cx';
 import joinClasses from 'joinClasses';
+import createReactClass from 'create-react-class';
 
 var DIR_SIGN = FixedDataTableHelper.DIR_SIGN;
 
@@ -26,7 +27,7 @@ var DEFAULT_PROPS = {
   highlighted: false,
 };
 
-var FixedDataTableCell = React.createClass({
+var FixedDataTableCell = createReactClass({
 
   /**
    * PropTypes are disabled in this component, because having them on slows

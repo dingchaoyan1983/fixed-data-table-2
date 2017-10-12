@@ -17,6 +17,7 @@ import ReactDOM from 'ReactDOM';
 import ReactComponentWithPureRenderMixin from 'ReactComponentWithPureRenderMixin';
 import ReactWheelHandler from 'ReactWheelHandler';
 import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 
 import cssVar from 'cssVar';
 import cx from 'cx';
@@ -35,7 +36,7 @@ var KEYBOARD_SCROLL_AMOUNT = 40;
 
 var _lastScrolledScrollbar = null;
 
-var Scrollbar = React.createClass({
+var Scrollbar = createReactClass({
   mixins: [ReactComponentWithPureRenderMixin],
 
   propTypes: {

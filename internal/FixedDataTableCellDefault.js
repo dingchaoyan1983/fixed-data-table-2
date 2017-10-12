@@ -18,6 +18,10 @@ var _joinClasses = require('./joinClasses');
 
 var _joinClasses2 = _interopRequireDefault(_joinClasses);
 
+var _createReactClass = require('create-react-class');
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } /**
@@ -55,7 +59,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
  * );
  * ```
  */
-var FixedDataTableCellDefault = _React2.default.createClass({
+var FixedDataTableCellDefault = (0, _createReactClass2.default)({
   displayName: 'FixedDataTableCellDefault',
 
   propTypes: {

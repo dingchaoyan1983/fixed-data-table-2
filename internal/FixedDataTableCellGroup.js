@@ -38,13 +38,17 @@ var _FixedDataTableTranslateDOMPosition = require('./FixedDataTableTranslateDOMP
 
 var _FixedDataTableTranslateDOMPosition2 = _interopRequireDefault(_FixedDataTableTranslateDOMPosition);
 
+var _createReactClass = require('create-react-class');
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var DIR_SIGN = _FixedDataTableHelper2.default.DIR_SIGN;
 
-var FixedDataTableCellGroupImpl = _React2.default.createClass({
+var FixedDataTableCellGroupImpl = (0, _createReactClass2.default)({
   displayName: 'FixedDataTableCellGroupImpl',
 
 
@@ -169,7 +173,7 @@ var FixedDataTableCellGroupImpl = _React2.default.createClass({
   }
 });
 
-var FixedDataTableCellGroup = _React2.default.createClass({
+var FixedDataTableCellGroup = (0, _createReactClass2.default)({
   displayName: 'FixedDataTableCellGroup',
 
 

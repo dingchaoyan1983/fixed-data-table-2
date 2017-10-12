@@ -14,12 +14,13 @@ import React from 'React';
 import PropTypes from 'prop-types';
 import FixedDataTableRowBuffer from 'FixedDataTableRowBuffer';
 import FixedDataTableRow from 'FixedDataTableRow';
+import createReactClass from 'create-react-class';
 
 import cx from 'cx';
 import emptyFunction from 'emptyFunction';
 import joinClasses from 'joinClasses';
 
-var FixedDataTableBufferedRows = React.createClass({
+var FixedDataTableBufferedRows = createReactClass({
 
   propTypes: {
     isScrolling: PropTypes.bool,

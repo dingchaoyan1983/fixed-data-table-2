@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 
 import cx from 'cx';
 import joinClasses from 'joinClasses';
+import createReactClass from 'create-react-class';
 
 
 /**
@@ -40,7 +41,7 @@ import joinClasses from 'joinClasses';
  * );
  * ```
  */
-var FixedDataTableCellDefault = React.createClass({
+var FixedDataTableCellDefault = createReactClass({
   propTypes: {
 
     /**

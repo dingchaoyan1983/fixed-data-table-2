@@ -16,6 +16,10 @@ var _FixedDataTableRow = require('./FixedDataTableRow');
 
 var _FixedDataTableRow2 = _interopRequireDefault(_FixedDataTableRow);
 
+var _createReactClass = require('create-react-class');
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
 var _cx = require('./cx');
 
 var _cx2 = _interopRequireDefault(_cx);
@@ -30,7 +34,19 @@ var _joinClasses2 = _interopRequireDefault(_joinClasses);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FixedDataTableBufferedRows = _React2.default.createClass({
+/**
+ * Copyright Schrodinger, LLC
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule FixedDataTableBufferedRows
+ * @typechecks
+ */
+
+var FixedDataTableBufferedRows = (0, _createReactClass2.default)({
   displayName: 'FixedDataTableBufferedRows',
 
 
@@ -161,16 +177,6 @@ var FixedDataTableBufferedRows = _React2.default.createClass({
   _getRowHeight: function _getRowHeight( /*number*/index) /*number*/{
     return this.props.rowHeightGetter ? this.props.rowHeightGetter(index) : this.props.defaultRowHeight;
   }
-}); /**
-     * Copyright Schrodinger, LLC
-     * All rights reserved.
-     *
-     * This source code is licensed under the BSD-style license found in the
-     * LICENSE file in the root directory of this source tree. An additional grant
-     * of patent rights can be found in the PATENTS file in the same directory.
-     *
-     * @providesModule FixedDataTableBufferedRows
-     * @typechecks
-     */
+});
 
 module.exports = FixedDataTableBufferedRows;

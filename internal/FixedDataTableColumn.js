@@ -8,24 +8,16 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _createReactClass = require('create-react-class');
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Component that defines the attributes of table column.
  */
-/**
- * Copyright Schrodinger, LLC
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule FixedDataTableColumn
- * @typechecks
- */
-
-var FixedDataTableColumn = _React2.default.createClass({
+var FixedDataTableColumn = (0, _createReactClass2.default)({
   displayName: 'FixedDataTableColumn',
 
   statics: {
@@ -184,6 +176,16 @@ var FixedDataTableColumn = _React2.default.createClass({
     }
     return null;
   }
-});
+}); /**
+     * Copyright Schrodinger, LLC
+     * All rights reserved.
+     *
+     * This source code is licensed under the BSD-style license found in the
+     * LICENSE file in the root directory of this source tree. An additional grant
+     * of patent rights can be found in the PATENTS file in the same directory.
+     *
+     * @providesModule FixedDataTableColumn
+     * @typechecks
+     */
 
 module.exports = FixedDataTableColumn;

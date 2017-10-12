@@ -87,6 +87,10 @@ var _FixedDataTableTranslateDOMPosition = require('./FixedDataTableTranslateDOMP
 
 var _FixedDataTableTranslateDOMPosition2 = _interopRequireDefault(_FixedDataTableTranslateDOMPosition);
 
+var _createReactClass = require('create-react-class');
+
+var _createReactClass2 = _interopRequireDefault(_createReactClass);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ReactChildren = _React2.default.Children;
@@ -145,7 +149,7 @@ var DRAG_SCROLL_BUFFER = 100;
  * - Scrollable Body Columns: The body columns that move while scrolling
  *   vertically or horizontally.
  */
-var FixedDataTable = _React2.default.createClass({
+var FixedDataTable = (0, _createReactClass2.default)({
   displayName: 'FixedDataTable',
 
 
@@ -1144,7 +1148,7 @@ var FixedDataTable = _React2.default.createClass({
   }
 });
 
-var HorizontalScrollbar = _React2.default.createClass({
+var HorizontalScrollbar = (0, _createReactClass2.default)({
   displayName: 'HorizontalScrollbar',
 
   mixins: [_ReactComponentWithPureRenderMixin2.default],
